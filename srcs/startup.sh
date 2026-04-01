@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ ! -f "./.env" ]; then
+	cat < ".env.example" > ".env"
+fi
+
+set -a
+source .env
+set +a
+
+for var in \
+	WORDPRESS_URL \
+	DATABASE_NAME \
+	DB_USER_NAME \
+	DB_USER_PASS \
+	DB_ROOT_PASS \
+	WP_ADMIN_USER \
+	WP_ADMIN_PASS \
+	WP_ADMIN_EMAIL
+do
+	if [ -z "${!var}" ]; then
+		echo "Error: $var is empty"
+		exit 1
+	fi
+done
+
+if [[ ! "$DATABASE_NAME" =~ ^[a-zA-Z0-9_]+$ ]]; then
+    echo "Error: invalid database name"
+    echo "Database name should only contain letters, numbers, and underscores"
+    exit 1
+fi
+
+echo "Environment is ok"
+
+if [ -f ".env.example" ]; then
+	rm .env.example
+fi

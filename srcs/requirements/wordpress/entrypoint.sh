@@ -7,7 +7,7 @@ MAXCOUNT=60
 echo "Waiting for MariaDB..."
 
 count=0
-while ! mysqladmin ping -h"$DBHOST" -u"$USER" -p"$USERPASS" --silent; do
+while ! mysqladmin ping -h"$DBHOST" -u"$DB_USER_NAME" -p"$DB_USER_PASS" --silent; do
 	count=$((count + 1))
 	if [ "$count" -ge "$MAXCOUNT" ]; then
 		echo "Couldn't reach MariaDB. Exiting.."
@@ -21,16 +21,16 @@ echo "Connected to MariaDB"
 if [ ! -f wp-config.php ]; then
 	echo "Creating wp-config.php..."
 	wp config create \
-		--dbname="$DATABASE" \
-		--dbuser="$USER" \
-		--dbpass="$USERPASS" \
-		--dbhost="$DBHOST" \
+		--dbname="$DATABASE_NAME" \
+		--dbuser="$DB_USER_NAME" \
+		--dbpass="$DB_USER_PASS" \
+		--dbhost="mariadb" \
 		--allow-root
 	sed -i "s/listen =.*/listen = 9000/g"  /etc/php/8.2/fpm/pool.d/www.conf
 
 	echo "Installing WordPress..."
 	wp core install \
-		--url="$WORDPRESSURL" \
+		--url="$WORDPRESS_URL" \
 		--title="Inception Wordpress" \
 		--admin_user="$WP_ADMIN_USER" \
 		--admin_password="$WP_ADMIN_PASS" \
