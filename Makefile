@@ -7,6 +7,7 @@ MARIADB_DATA	:= /home/sneshev/data/mariadb
 WORDPRESS_DATA	:= /home/sneshev/data/wordpress
 
 all:
+	bash startup.sh
 	mkdir -p $(MARIADB_DATA)
 	mkdir -p $(WORDPRESS_DATA)
 	$(DC) up --build --detach

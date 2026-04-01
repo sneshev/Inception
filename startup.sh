@@ -1,11 +1,11 @@
 #!/bin/bash
 
-if [ ! -f "./.env" ]; then
-	cat < ".env.example" > ".env"
+if [ ! -f "srcs/.env" ]; then
+	cat < "srcs/.env.example" > "srcs/.env"
 fi
 
 set -a
-source .env
+source srcs/.env
 set +a
 
 for var in \
@@ -32,6 +32,6 @@ fi
 
 echo "Environment is ok"
 
-if [ -f ".env.example" ]; then
-	rm .env.example
+if [ -f "srcs/.env.example" ]; then
+	rm "srcs/.env.example"
 fi

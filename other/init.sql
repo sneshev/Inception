@@ -1,8 +1,0 @@
-CREATE USER IF NOT EXISTS 'root'@'localhost' IDENTIFIED BY 'root_pass';
-
-CREATE DATABASE IF NOT EXISTS alabla;
-
-CREATE USER IF NOT EXISTS 'joniiiii'@'%' IDENTIFIED BY 'passsssss';
-GRANT ALL PRIVILEGES ON alabla.* TO 'joniiiii'@'%';
-
-FLUSH PRIVILEGES;
