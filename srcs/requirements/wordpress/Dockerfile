@@ -25,7 +25,9 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 WORKDIR /var/www/html
 
-COPY --chmod=555 entrypoint.sh /
+COPY entrypoint.sh /
+RUN chmod 555 "/entrypoint.sh"
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["php-fpm8.2", "-F"]

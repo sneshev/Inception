@@ -12,7 +12,9 @@ RUN apt-get update && \
 RUN mkdir -p /run/mysqld && \
     chown mysql /run/mysqld
 
-COPY --chmod=555 entrypoint.sh /
+COPY entrypoint.sh /
+RUN chmod 555 "/entrypoint.sh"
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["mysqld", "--user=mysql","--bind-address=0.0.0.0"]

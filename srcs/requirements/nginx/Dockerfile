@@ -15,9 +15,9 @@ RUN rm -f /etc/nginx/sites-enabled/default && \
 
 COPY inception.conf /etc/nginx/conf.d/inception.conf
 
-COPY --chmod=555 entrypoint.sh /
-ENTRYPOINT ["/entrypoint.sh"]
+COPY entrypoint.sh /
+RUN chmod 555 "/entrypoint.sh"
 
-EXPOSE 9000
+ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
