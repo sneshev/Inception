@@ -8,9 +8,6 @@ if [ -f "$INITDIR/$INITFILE" ]; then
     echo "$INITFILE already exists.."
     echo "Starting mysqld.."
     exec "$@"
-elif [[ ! "$DATABASE_NAME" =~ ^[a-zA-Z0-9_]+$ ]]; then
-    echo "invalid database name"
-    exit 1
 else 
     echo "creating \"$INITFILE\" file in directory \"$INITDIR\""
 
