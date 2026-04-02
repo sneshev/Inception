@@ -15,6 +15,11 @@ RUN rm -f /etc/nginx/sites-enabled/default && \
 
 COPY inception.conf /etc/nginx/conf.d/inception.conf
 
+RUN rm /var/log/nginx/access.log && \
+	rm /var/log/nginx/error.log  && \
+	ln -s /proc/1/fd/1 /var/log/nginx/access.log && \
+	ln -s /proc/1/fd/1 /var/log/nginx/error.log
+
 COPY entrypoint.sh /
 RUN chmod 555 "/entrypoint.sh"
 

@@ -3,7 +3,7 @@
 MAXCOUNT=60
 
 
-
+DBHOST=mariadb
 echo "Waiting for MariaDB..."
 
 count=0
@@ -24,7 +24,7 @@ if [ ! -f wp-config.php ]; then
 		--dbname="$DATABASE_NAME" \
 		--dbuser="$DB_USER_NAME" \
 		--dbpass="$DB_USER_PASS" \
-		--dbhost="mariadb" \
+		--dbhost="$DBHOST" \
 		--allow-root
 	sed -i "s/listen =.*/listen = 9000/g"  /etc/php/8.2/fpm/pool.d/www.conf
 

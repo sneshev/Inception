@@ -32,6 +32,14 @@ fi
 
 echo "Environment is ok"
 
+
+if ! command -v docker; then
+	echo "Installing docker and docker-compose"
+	apt update -y
+	apt install -y docker.io
+	apt install -y docker-compose
+fi
+
 if [ -f "srcs/.env.example" ]; then
 	rm "srcs/.env.example"
 fi
