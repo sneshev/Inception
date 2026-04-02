@@ -24,7 +24,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     volumes:
       - wordpress_volume:/var/www/html
     networks:
@@ -39,6 +40,12 @@ services:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      start_period: 5s
+      interval: 10s
+      timeout: 5s
+      retries: 5
     volumes:
       - mariadb_volume:/var/lib/mysql
     networks:
