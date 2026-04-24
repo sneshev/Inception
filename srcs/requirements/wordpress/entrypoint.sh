@@ -30,7 +30,7 @@ if [ ! -f wp-config.php ]; then
 
 	echo "Installing WordPress..."
 	wp core install \
-		--url="$WORDPRESS_URL" \
+		--url="https://$WORDPRESS_URL" \
 		--title="Inception Wordpress" \
 		--admin_user="$WP_ADMIN_USER" \
 		--admin_password="$WP_ADMIN_PASS" \
