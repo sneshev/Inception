@@ -42,8 +42,7 @@ fi
 
 
 if ! grep -q "$WORDPRESS_URL" /etc/hosts; then
-	IP=$(hostname -I | awk '{print $1}')
-	echo "$IP	$WORDPRESS_URL" >> /etc/hosts
+	echo "127.0.0.1	$WORDPRESS_URL" >> /etc/hosts
 	echo "Added $WORDPRESS_URL to /etc/hosts"
 fi
 
