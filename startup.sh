@@ -40,6 +40,13 @@ if ! command -v docker; then
 	apt install -y docker-compose
 fi
 
+
+if ! grep -q "$WORDPRESS_URL" /etc/hosts; then
+	IP=$(hostname -I | awk '{print $1}')
+	echo "$IP	$WORDPRESS_URL" >> /etc/hosts
+	echo "Added $WORDPRESS_URL to /etc/hosts"
+fi
+
 if [ -f "srcs/.env.example" ]; then
 	rm "srcs/.env.example"
 fi
