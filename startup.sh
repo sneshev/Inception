@@ -31,7 +31,7 @@ if [[ ! "$DATABASE_NAME" =~ ^[a-zA-Z0-9_]+$ ]]; then
 fi
 
 echo "Environment is ok"
-
+timedatectl set-ntp true
 
 if ! command -v docker; then
 	echo "Installing docker and docker-compose"
